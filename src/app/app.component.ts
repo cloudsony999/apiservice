@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PostService } from './services/post.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'apiservice';
+  posts:any;
+
+  constructor(private service:PostService) {}
+
+  ngOnInit() {
+    this.service.getAmitava()
+      .subscribe(response => {
+        this.posts = response;
+      });
+}
+
 }
